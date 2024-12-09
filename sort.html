@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2: Sorting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="course-styles.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="text.html">Text</a>
+            <a href="ui.html">UI</a>
+            <a href="sort.html" class="active">Sort</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>People Information</h1>
+        <form id="person-form" class="person-form">
+            <div class="form-group">
+                <input type="text" name="name" class="input-field" placeholder="Name" required>
+                <input type="number" name="income" class="input-field" placeholder="Income" required>
+                <input type="date" name="birthday" class="input-field" required>
+            </div>
+            <button type="submit" class="btn">Add Person</button>
+        </form>
+
+        <div class="sort controls">
+            <button id="sort-income" class="btn">Sort by Income</button>
+            <button id="sort-birthday" class="btn">Sort by Birthday</button>
+        </div>
+
+        <ul id="people-list"></ul>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Me</h3>
+                    <p>Front-End Developer</p>
+                    <p>Summer Rhoda</p>
+                    <p>Email: B00477047@studentmail.uws.ac.uk</p>
+                    <p>Phone: +(44) 7360012506</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="text.html">Text</a></li>
+                        <li><a href="ui.html">UI</a></li>
+                        <li><a href="sort.html">Sort</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li>Email: B00477047@studentmail.uws.ac.uk</li>
+                        <li>Phone: +(44) 7360012506</li>
+                    </ul>
+                </div>
+            </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; B00477047. All rights reserved. December, 2024</p>
+                </div>
+            </div>
+    </footer>
+
+    <script>
+        class Person {
+            constructor(name, income, birthday) {
+                this.name = name;
+                this.income = parseFloat(income);
+                this.birthday = new Date(birthday);
+            }
+        }
+
+        let people = [];
+        const MAX_PEOPLE = 3;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('person-form');
+            const sortIncomeBtn = document.getElementById('sort-income');
+            const sortBirthdayBtn = document.getElementById('sort-birthday');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (people.length >= MAX_PEOPLE) {
+                    alert('Maximum number of people (3) reached');
+                    return;
+                }
+
+                const formData = new FormData(e.target);
+                const person = new Person(
+                    formData.get('name'),
+                    formData.get('income'),
+                    formData.get('birthday')
+                );
+
+                people.push(person);
+                updateList();
+                form.reset();
+            });
+
+            sortIncomeBtn.addEventListener('click', () => {
+                people.sort((a, b) => b.income - a.income);
+                updateList();
+            });
+
+            sortBirthdayBtn.addEventListener('click', () => {
+                people.sort((a, b) => a.birthday - b.birthday);
+                updateList();
+            });
+        });
+
+        function updateList() {
+            const list = document.getElementById('people-list');
+            list.innerHTML =people.map(person => `
+                <li>
+                    Name: ${person.name},
+                    Income: ${person.income.toFixed(2)},
+                    Birthday: ${person.birthday.toLocaleDateString()}
+                </li>    
+            `).join('');
+            animateSort();
+        }
+
+        function animateSort() {
+            const items = document.querySelectorAll('#people-list li');
+            items.forEach((item, index) => {
+                item.style.animation = 'none';
+                item.offsetHeight;
+                item.style.animation = `fadeIn 0.5s ${index * 0.1}s`;
+            });
+        }
+    </script>
+</body>
+</html>

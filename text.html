@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5: UWS Space Counter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="course-styles">
+    <link rel="stylesheet" type="text/css" href="course-styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="sort.html">Sort</a>
+            <a href="text.html" class="active">Text</a>
+            <a href="ui.html">UI</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Enter a paragraph about UWS University</h1>
+        <textarea id="paragraph-input" placeholder="Write your paragraph here>>>"></textarea>
+        <button id="count-spaces">Count Spaces Before Last 'usw':</button>
+        <div id="result">
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#count-spaces').click(function() {
+                const text = $('#paragraph-input').val().toLowerCase();
+                const lastIndex = text.lastIndexOf('uws');
+
+                if (lastIndex === -1) {
+                    $('#result').html('No occurrence of "uws" found in the text.').show();
+                    return;
+                }
+
+                const substringBeforeUWS =text.substring(0, lastIndex);
+
+                const spaceCount = (substringBeforeUWS.match(/ /g) || []).length;
+
+                $('#result').html(`Number of spaces before the last occurrence of "uws": ${spaceCount}`).show();
+            });
+        });
+    </script>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Me</h3>
+                    <p>Summer Rhoda</p>
+                    <p>Front-End Developer</p>
+                    <p>Email: B00477047@studentmail.uws.ac.uk</p>
+                    <p>Phone: +(44) 7360012506</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="text.html">Text</a></li>
+                        <li><a href="ui.html">UI</a></li>
+                        <li><a href="sort.html">Sort</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li>Email:B00477047@studentmail.uws.ac.uk</li>
+                        <li>Phone: +(44) 7360012506</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; B00477047. All reserved. December, 2024</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

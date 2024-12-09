@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3: JQuery UI Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="course-styles.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="sort.html">Sort</a>
+            <a href="text.html">Text</a>
+            <a href="ui.html" class="active">UI</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Interactive Elements Showcase</h1>
+
+        <div class="ui-elements">
+            <div class="ui-widget">
+                <h2>Event Scheduler</h2>
+                <p>Select a date for your event:</p>
+                <input type="text" id="datepicker" placeholder="Click to select date">
+            </div>
+
+            <div class="ui-widget">
+                <div id="accordion">
+                    <h3>About This Project</h3>
+                    <div>
+                        <p>This Showcase demonstrate various JQuery UI interactive elements.</p>
+                    </div>     
+
+                <h3>Features</h3>
+            <div>
+                 <ul>
+                    <li>Interactive Datepicker</li>
+                    <li>Collapsible Accordion</li>
+                    <li>Draggable Elements</li>
+                    <li>Resizable Components</li>
+                 </ul>
+            </div>       
+
+            <h3>Instructions</h3>
+            <div>
+                <p>Exlore each interactive element to see how they work!</p>
+            </div>
+        </div>
+    </div>
+
+            <div class="ui-widget">
+                <h2>Draggable Elements</h2>
+                <div class="draggable-items">
+                <div class="draggable" id="drag1">Drag Me</div>
+                <div class="draggable" id="drag2">Move Me Around</div>
+                <div class="draggable" id="drag3">I'm draggable too!</div>
+            </div>
+        </div>
+
+            <div class="ui-widget">
+                <h2>Resizable Element</h2>
+                <div id="resizable">
+                <p>Resize Me</p>
+            </div>
+        </div>
+    </div>
+</div>        
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Me</h3>
+                    <p>Summer Rhoda</p>
+                    <p>Front-End Developer</p>
+                    <p>Email: B00477047@studentmail.uws.ac.uk</p>
+                    <p>Phone: +(44) 7360012506</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="text.html">Text</a></li>
+                        <li><a href="ui.html">UI</a></li>
+                        <li><a href="sort.html">Sort</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li>Email: B00477047@studentmail.uws.ac.uk</li>
+                        <li>Phone: +(44) 7360012506</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; B00477047. All rights reserved. December, 2024</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $("#datepicker").datepicker({
+                showAnim: "fadeIn",
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+
+            $("#accordion").accordion({
+                heightStyle: "content",
+                collapsible: true
+            });
+
+
+            $(".draggable").draggable({
+                containment: ".draggable-items",
+                cursor: "move",
+                snap: true,
+                revert: "invalid"
+        });
+
+        $("#resizable").resizable({
+            maxHeight: 250,
+            maxWidth: 350,
+            minHeight: 100,
+            minWidth: 100
+        });
+
+    });
+    </script>
+    </body>
+</html>
